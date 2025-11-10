@@ -1,22 +1,14 @@
 import { telefunc } from "telefunc/vite";
 import react from "@vitejs/plugin-react";
-import { compiled } from "vite-plugin-compiled-react";
 import vike from "vike/plugin";
 import { defineConfig } from "vite";
 
 export default defineConfig({
-  plugins: [
-    vike(),
-    compiled({
-      extract: true,
-    }),
-    react(),
-    telefunc(),
-  ],
-  build: {
-    target: "es2022",
-  },
+  plugins: [vike(), react(), telefunc()],
   ssr: {
-    noExternal: ['@brillout/picocolors']
+    noExternal: ['@brillout/picocolors'],
+    optimizeDeps: {
+      // include: ['@brillout/picocolors']
+    }
   }
 });

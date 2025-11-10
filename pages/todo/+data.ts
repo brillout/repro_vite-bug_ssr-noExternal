@@ -1,12 +1,11 @@
 // https://vike.dev/data
 
-import { todos } from "../../database/todoItems";
 import type { PageContextServer } from "vike/types";
 
-export type Data = {
-  todo: { text: string }[];
-};
+export type Data = Awaited<ReturnType<typeof data>>;
 
-export default async function data(_pageContext: PageContextServer): Promise<Data> {
-  return { todo: todos };
+export async function data(_pageContext: PageContextServer) {
+  // NOTE: This to-do list is only for demonstration — it doesn’t save your changes.
+  // Go to https://vike.dev/new and select a Database tool for an example of how to persist the to-do list.
+  return { todo: [{ text: "Buy milk" }, { text: "Buy strawberries" }] };
 }

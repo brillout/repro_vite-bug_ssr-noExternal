@@ -8,7 +8,6 @@ export function TodoList({ initialTodoItems }: { initialTodoItems: { text: strin
     <>
       <ul>
         {todoItems.map((todoItem, index) => (
-          // biome-ignore lint: example
           <li key={index}>{todoItem.text}</li>
         ))}
       </ul>
@@ -19,8 +18,10 @@ export function TodoList({ initialTodoItems }: { initialTodoItems: { text: strin
 
             // Optimistic UI update
             setTodoItems((prev) => [...prev, { text: newTodo }]);
+
             try {
               await onNewTodo({ text: newTodo });
+
               setNewTodo("");
             } catch (e) {
               console.error(e);

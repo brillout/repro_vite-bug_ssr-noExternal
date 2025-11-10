@@ -1,9 +1,12 @@
-import { NavLink } from "@mantine/core";
 import { usePageContext } from "vike-react/usePageContext";
 
-export function Link({ href, label }: { href: string; label: string }) {
+export function Link({ href, children }: { href: string; children: string }) {
   const pageContext = usePageContext();
   const { urlPathname } = pageContext;
   const isActive = href === "/" ? urlPathname === href : urlPathname.startsWith(href);
-  return <NavLink href={href} label={label} active={isActive} />;
+  return (
+    <a href={href} className={isActive ? "is-active" : undefined}>
+      {children}
+    </a>
+  );
 }
